@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <title>Log In</title>
+        <style>
+            body  { background-color:lightslategrey;}
+            h1 {text-align: center; margin-top: 0 auto; font-size: 32px; font-family: Arial, Helvetica, sans-serif;}
+            span {font-size: 18px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: red;}
+            h2 {font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-align: center;}
+            div {display: flex; justify-content: center; align-items: center; margin-top: 7px; flex-direction: column;}
+            .button-login {font-size: 14px; text-align: center; margin-top: 10px; font: bold; color: blue; margin-bottom: 10px;}
+            .button-signin {font-size: 14px; text-align: center; margin-top: 10px; font: bolder; color: crimson;}
+            .newuserlabel {font-size: 18px; text-align: center; font: bolder;}
+        </style>
+    </head>
+
+    <body>
+        <h1>Log In<br></h1>
+        <form action="login" th:action="@{/login}" method="post">
+            <div th:if="${param.error}">
+                <span>Invalid Email or Password</span>
+            </div>
+            <div>
+                <h2><label>Username: </label><br></h2>
+                <input type="text" name="username" placeholder="Username"/>    
+            </div>
+            <div>
+                <h2><label>Password: </label><br></h2>
+                <input type="text" name="password" placeholder="Password"/>
+                <button type="submit" class="button-login">Log In</button>
+            </div>
+            
+        </form>
+        
+        <div><label class="newuserlabel">New user? Sign in here!</label></div>
+        
+        <div><a href="/user/register"><button class="button-signin">Sign In</button></a></div>
+    </body>
+</html>
