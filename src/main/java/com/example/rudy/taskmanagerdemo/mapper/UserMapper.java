@@ -16,7 +16,8 @@ public class UserMapper {
                                  .email(user.getEmail())
                                  .password(user.getPassword())
                                  .userName(user.getUsername())
-                                 .tasks(user.getTasks().stream().map(taskMapper::mapToDto).toList())
+                                 .ongoingTasks(user.getOngoingTasks().stream().map(taskMapper::mapToOngoingDto).toList())
+                                 .completedTasks(user.getCompletedTasks().stream().map(taskMapper::mapToCompletedDto).toList())
                                  .role(user.getRol())
                                  .build();
         
@@ -29,7 +30,8 @@ public class UserMapper {
                         .email(userDto.getEmail())
                         .password(userDto.getPassword())
                         .userName(userDto.getUserName())
-                        .tasks(userDto.getTasks().stream().map(taskMapper::mapToTask).toList())
+                        .ongoingTasks(userDto.getOngoingTasks().stream().map(taskMapper::mapToOngoing).toList())
+                        .completedTasks(userDto.getCompletedTasks().stream().map(taskMapper::mapToCompleted).toList())
                         .rol(userDto.getRole())
                         .build();
         return user;

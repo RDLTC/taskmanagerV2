@@ -1,33 +1,59 @@
 package com.example.rudy.taskmanagerdemo.mapper;
 
-import com.example.rudy.taskmanagerdemo.domain.Task;
-import com.example.rudy.taskmanagerdemo.dto.TaskDto;
+import com.example.rudy.taskmanagerdemo.domain.CompletedTask;
+import com.example.rudy.taskmanagerdemo.domain.OngoingTask;
+import com.example.rudy.taskmanagerdemo.dto.CompletedTaskDto;
+import com.example.rudy.taskmanagerdemo.dto.OngoingTaskDto;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TaskMapper {
     
-    public TaskDto mapToDto(Task task){
-        TaskDto taskDto = TaskDto.builder()
-                                 .id(task.getId())
-                                 .title(task.getTitle())
-                                 .description(task.getDescription())
-                                 .status(task.getStatus())
-                                 .createdOn(task.getCreatedOn())
-                                 .updatedOn(task.getUpdatedOn())
+    public OngoingTaskDto mapToOngoingDto(OngoingTask ongoingTask){
+        OngoingTaskDto ongoingDto = OngoingTaskDto.builder()
+                                 .id(ongoingTask.getId())
+                                 .title(ongoingTask.getTitle())
+                                 .description(ongoingTask.getDescription())
+                                 .status(ongoingTask.getStatus())
+                                 .createdOn(ongoingTask.getCreatedOn())
+                                 .doBefore(ongoingTask.getDoBefore())
                                  .build();
-        return taskDto;
+        return ongoingDto;
     }
     
-    public Task mapToTask(TaskDto taskDto){
-        Task task = Task.builder()
-                        .id(taskDto.getId())
-                        .title(taskDto.getTitle())
-                        .description(taskDto.getDescription())
-                        .status(taskDto.getStatus())
-                        .createdOn(taskDto.getCreatedOn())
-                        .updatedOn(taskDto.getUpdatedOn())
+    public OngoingTask mapToOngoing(OngoingTaskDto ongoingDto){
+        OngoingTask ongoingTask = OngoingTask.builder()
+                                 .id(ongoingDto.getId())
+                                 .title(ongoingDto.getTitle())
+                                 .description(ongoingDto.getDescription())
+                                 .status(ongoingDto.getStatus())
+                                 .createdOn(ongoingDto.getCreatedOn())
+                                 .doBefore(ongoingDto.getDoBefore())
+                                 .build();
+        return ongoingTask;
+    }
+    
+    public CompletedTaskDto mapToCompletedDto(CompletedTask completedTask){
+        CompletedTaskDto completedDto = CompletedTaskDto.builder()
+                        .id(completedTask.getId())
+                        .title(completedTask.getTitle())
+                        .description(completedTask.getDescription())
+                        .status(completedTask.getStatus())
+                        .createdOn(completedTask.getCreatedOn())
+                        .finishedOn(completedTask.getFinishedOn())
                         .build();
-        return task;
+        return completedDto;
+    }
+    
+    public CompletedTask mapToCompleted(CompletedTaskDto completedDto){
+        CompletedTask completedTask = CompletedTask.builder()
+                        .id(completedDto.getId())
+                        .title(completedDto.getTitle())
+                        .description(completedDto.getDescription())
+                        .status(completedDto.getStatus())
+                        .createdOn(completedDto.getCreatedOn())
+                        .finishedOn(completedDto.getFinishedOn())
+                        .build();
+        return completedTask;
     }
 }

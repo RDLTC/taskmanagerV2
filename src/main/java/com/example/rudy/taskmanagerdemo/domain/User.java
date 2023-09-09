@@ -39,7 +39,9 @@ public class User implements UserDetails{
     @Column(nullable = false)
     private String rol;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Task> tasks;
+    private List<CompletedTask> completedTasks;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OngoingTask> ongoingTasks;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

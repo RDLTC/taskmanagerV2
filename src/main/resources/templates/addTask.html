@@ -25,7 +25,7 @@
 
     <body>
         <div class="container">
-            <form th:object="${task}" th:action="@{/tasks/addTask}" method="post">
+            <form th:object="${task}" th:action="@{/tasklist/addTask}" method="post">
                 <h1>Task Info To Add: </h1>
                 
                 <div>
@@ -58,7 +58,7 @@
             </form>
 
             <div>
-                <br> <a href="/tasks"><-- Return To Task List</a>
+                <br> <a href="/tasklist"><-- Return To Task List</a>
             </div>
         </div>
     </body>

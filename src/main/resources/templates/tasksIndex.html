@@ -6,18 +6,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {display: flex; justify-content: center; flex-direction: column; background-color: #132C52; margin: 0;}
-        h1 {font-size: 38px; font-family: sans-serif; color: whitesmoke; font-weight: normal; text-transform: uppercase;}
-        h2 {font-size: 24px; font-family: sans-serif; color:crimson; font-weight: normal; text-transform: uppercase;}
-        p {font-size: 18px; font-family: 'Times New Roman'; font-weight: normal;}
-        h3 {font-size: 22px; font-family: Arial; font-weight: normal; text-transform: uppercase; font: bolder;}
-        .title-div {align-self: center; padding-top: 50px;}
-        .task-div {display: flex; flex-direction: column; justify-content: start; align-self: center; align-items: flex-start; background-color: white; width: 50%; padding: 20px; margin-top: 20px;}
-        .task-item {margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid black; width: 100%; box-sizing: border-box;}
-        .button-add-div {align-self: center;}
-        .logout-div {align-self: center;}
-        .aref-logout {background-color: whitesmoke; font-weight: bolder; color: red; font-size: 22px; text-decoration: none;}
-        .button-add {font-family: 'Cambria'; font-size: 22px;}
+        body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #132C52;
+            margin: 0;
+        }
+        h1 {
+            font-size: 38px;
+            font-family: sans-serif;
+            color: whitesmoke;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-size: 24px;
+            font-family: sans-serif;
+            color: crimson;
+            font-weight: normal;
+            text-transform: uppercase;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        p {
+            font-size: 18px;
+            font-family: 'Times New Roman';
+            font-weight: normal;
+            padding-top: 5px;
+            padding-bottom: 5px
+        }
+        h3 {
+            font-size: 22px;
+            font-family: Arial;
+            font-weight: normal;
+            text-transform: uppercase;
+            font: bolder;
+        }
+        .title-div {
+            align-self: center;
+            padding-top: 50px;
+        }
+        .tasks-container{
+            display: flex;
+            flex-direction: row;
+            justify-self: center;
+            justify-items: center;
+        }
+        .task-div {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-self: flex-start;
+            align-items: flex-start;
+            background-color: white;
+            margin-left: 15px;
+            margin-right: 15px;
+            width: 50%;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .task-item {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .button-add-div {
+            align-self: flex-start;
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        .logout-div {
+            align-self: center;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        .aref-logout {
+            background-color: whitesmoke;
+            font-weight: bolder;
+            color: red;
+            font-size: 22px;
+            text-decoration: none;
+        }
+        .button-add {
+            font-family: 'Cambria';
+            font-size: 22px;
+        }
     </style>
 </head>
 
@@ -26,27 +103,41 @@
         <h1>Tasks:</h1>
     </div>
 
-    <div class="task-div">
-        <div class="task-item" th:each="task : ${tasks}">
-            <h2 th:text="${task.title}"></h2>
-            <p th:text="${task.description}"></p>
-            <h3 th:text="${task.status}"></h3>
-            <a th:href="@{/tasks/{username}/modifyTask/{taskId}(username=${username},taskId=${task.id})}">Modify this
-                task</a> /
-            <a th:href="@{/tasks/{username}/deleteTask/{taskId}(username=${username},taskId=${task.id})}">Delete this
-                task</a>
+    <div class="tasks-container">
+        <div class="task-div">
+            <h1 style="color: crimson; margin-bottom: 25px;">Ongoing Tasks:</h1>
+            <div class="task-item" th:each="task : ${ongoingTasks}">
+                <h2 th:text="${task.title}"></h2>
+                <p th:text="${task.description}"></p>
+                <div style="display: flex; flex-direction: row;"><h3 style="margin-right: 5px;">Created On:</h3><h3 th:text="${task.createdOn}"></h3></div>
+                <div style="display: flex; flex-direction: row;"><h3 style="margin-right: 5px;">Updated On:</h3><h3 th:text="${task.updatedOn}"></h3></div>
+                <div style="display: flex; flex-direction: row;"><h3 style="margin-right: 5px;">Finish before:</h3><h3 th:text="${task.doBefore}"></h3></div>
+                <a style="font-weight: bold; color:darkgreen;" th:href="@{/tasklist/{username}/modifyTask/{taskId}(username=${username},taskId=${task.id})}">Modify this task</a> 
+                |
+                <a style="font-weight: bold; color: red;" th:href="@{/tasklist/{username}/dltOngTask/{taskId}(username=${username},taskId=${task.id})}">Delete this task</a>
+            </div>
+        </div>
+
+        <div class="task-div">
+            <h1 style="color: blue;">Completed Tasks:</h1>
+            <div class="task-item" th:each="task : ${completedTasks}">
+                <h2 th:text="${task.title}"></h2>
+                <p th:text="${task.description}"></p>
+                <div style="display: flex; flex-direction: row;"><h3 style="margin-right: 5px;">Created:</h3><h3 th:text="${task.createdOn}"></h3></div>
+                <div style="display: flex; flex-direction: row;"><h3 style="margin-right: 5px;">Finished:</h3><h3 th:text="${task.finishedOn}"></h3></div>
+                <a style="font-weight: bold; color: red;" th:href="@{/tasklist/{username}/dltCmpltTask/{taskId}(username=${username},taskId=${task.id})}">Delete this task</a>
+            </div>
         </div>
     </div>
 
     <div class="button-add-div">
-        <br><a th:href="@{/tasks/{username}/addTask(username=${username})}"><button class="button-add">Add
-                Task</button></a>
+        <a th:href="@{/tasklist/{username}/addTask(username=${username})}"><button class="button-add">Add Task</button></a>
     </div>
-
+    
     <div class="logout-div">
-        <br> <a class="aref-logout" href="/logout">Log Out</a>
+        <a class="aref-logout" href="/logout">Log Out</a>
     </div>
 
 </body>
 
-</html>
+</html> 

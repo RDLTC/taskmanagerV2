@@ -29,5 +29,6 @@ public class UserDto {
     @Size(min = 5, message = "Username must be at least 5 characters long.")
     private String userName;
     private String role;
-    private List<TaskDto> tasks;
+    private List<OngoingTaskDto> ongoingTasks;
+    private List<CompletedTaskDto> completedTasks;
 }

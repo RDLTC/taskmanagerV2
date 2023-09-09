@@ -26,7 +26,7 @@
 
     <body>
         <div class="container">
-            <form th:object="${modifyTask}" th:action="@{/tasks/modifyTask/{taskId}(taskId=${modifyTask.id})}"
+            <form th:object="${modifyTask}" th:action="@{/tasklist/modifyTask/{taskId}(taskId=${modifyTask.id})}"
                 method="post">
                 <h1>Modify Task Info: </h1>
     
