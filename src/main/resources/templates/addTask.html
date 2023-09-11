@@ -3,18 +3,8 @@
     <head>
         <title>Add Task</title>
         <meta charset="UTF-8">
-        <script>
-            function toggleCheckboxes(checkboxId) {
-                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-                checkboxes.forEach(checkbox => {
-                    if (checkbox.id !== checkboxId) {
-                        checkbox.checked = false;
-                    }
-                });
-            }
-        </script>
         <style>
-            body {display: flex; flex-direction: column; margin: 0; background-color: burlywood;}
+            body {display: flex; flex-direction: column; margin: 0; background-color: #038fe6;}
             .container {padding-left: 2%; justify-content: center; padding-top: 2%; width: 25%;}
             div {display: flex; flex-direction: column;}
             h1 {text-transform: uppercase; font-weight: bold; font-size: 30px; font-family: Verdana;}
@@ -29,31 +19,19 @@
                 <h1>Task Info To Add: </h1>
                 
                 <div>
-                    <label for="title">Title:</label>
+                    <label style="font-weight: bold;" for="title">Title:</label>
                     <input id="title" th:field="*{title}" type="text" placeholder="Title"/>
                 </div>
                 <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Invalid Title.</div>
     
                 <div>
-                    <label for="description">Description:</label>
+                    <label style="font-weight: bold;" for="description">Description:</label>
                     <textarea id="description" th:field="*{description}" rows="4" cols="50"></textarea>
                 </div>
                 <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Invalid Description.</div>
-    
+       
                 <div>
-                    <label>
-                        ONGOING:
-                        <input id="ongoing" th:field="*{status}" type="checkbox" value="ONGOING" onclick="toggleCheckboxes('ongoing')"/>
-                    </label>
-                    <label>
-                        FINISHED:
-                        <input id="finished" th:field="*{status}" type="checkbox" value="FINISHED" onclick="toggleCheckboxes('finished')"/>
-                    </label>
-                </div>
-                <div style="color: red" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Choose an option</div>
-    
-                <div>
-                    <input type="submit">
+                    <input type="submit" value="Add Task">
                 </div>
             </form>
 
