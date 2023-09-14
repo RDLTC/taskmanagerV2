@@ -1,6 +1,5 @@
 package com.example.rudy.taskmanagerdemo.service;
 
-import com.example.rudy.taskmanagerdemo.domain.CompletedTask;
 import com.example.rudy.taskmanagerdemo.domain.OngoingTask;
 import com.example.rudy.taskmanagerdemo.domain.User;
 import com.example.rudy.taskmanagerdemo.dto.OngoingTaskDto;
@@ -29,6 +28,7 @@ public class OngoingTaskService {
         newTask.setUser(user);
         newTask.setCreatedOn(LocalDate.now());
         newTask.setDoBefore(task.getDoBefore());
+        newTask.setStatus("ONGOING");
         
         ongoingTaskRepository.save(newTask);
     }
@@ -50,6 +50,7 @@ public class OngoingTaskService {
         taskToUpdate.setDescription(modifiedTask.getDescription());
         taskToUpdate.setStatus(modifiedTask.getStatus());
         taskToUpdate.setUpdatedOn(LocalDate.now());
+        taskToUpdate.setDoBefore(modifiedTask.getDoBefore());
         
         ongoingTaskRepository.save(taskToUpdate);
     }

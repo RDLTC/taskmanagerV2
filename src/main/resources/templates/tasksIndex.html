@@ -20,22 +20,6 @@
             font-weight: normal;
             text-transform: uppercase;
         }
-        h2 {
-            font-size: 24px;
-            font-family: sans-serif;
-            color: white;
-            font-weight: normal;
-            text-transform: uppercase;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-        p {
-            font-size: 18px;
-            font-family: 'Times New Roman';
-            font-weight: normal;
-            padding-top: 5px;
-            padding-bottom: 5px
-        }
         h3 {
             font-size: 22px;
             font-family: Arial;
@@ -69,8 +53,11 @@
             margin-bottom: 10px;
             border-top: 1px solid black;
             border-bottom: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
             width: 100%;
             box-sizing: border-box;
+            border-radius: 10px;
             background-color: #0367A6;
         }
         .button-add-div {
@@ -106,14 +93,14 @@
         <div class="task-div">
             <h1 style="color: #0468BF; margin-bottom: 20px;">Ongoing Tasks:</h1>
             <div class="task-item" th:each="task : ${ongoingTasks}">
-                <h2 style="margin: 5px; font-size: 24px;" th:text="${task.title}"></h2>
-                <p style="margin: 5px; font-size: 18px;" th:text="${task.description}"></p>
-                <div style="display: flex; flex-direction: row; margin: 5px;">
-                    <h3 style="margin-right: 5px; font-size: 14px; font-weight: bold;">Created On:</h3><h3 style="font-size: 14px; font-weight: bold; color: #023859; margin-right: 5px;" th:text="${task.createdOn}"></h3>
-                    <h3 style="margin-right: 5px; font-size: 14px; font-weight: bold;">Updated On:</h3><h3 style="font-size: 14px; font-weight: bold; color: purple; margin-right: 5px;" th:text="${task.updatedOn}"></h3>
-                    <h3 style="margin-right: 5px; font-size: 14px; font-weight: bold;">Finish before:</h3><h3 style="font-size: 14px; font-weight: bold; color: #73020C; margin-right: 5px;" th:text="${task.doBefore}"></h3>
+                <h2 style="margin: 5px; margin-top: 10px; padding-left: 5px; font-size: 18px; font-weight: bold; color: white; text-transform: uppercase;" th:text="${task.title}"></h2>
+                <p style="margin: 5px; margin-top: 8px; padding-left: 5px; font-size: 15px; font-family: 'Times New Roman';" th:text="${task.description}"></p>
+                <div style="display: flex; flex-direction: row; margin: 5px; padding-left: 5px;">
+                    <h3 style="margin: 2.5px; margin-left: 0px; font-size: 14px; font-weight: bold;">Created:</h3><h3 style="font-size: 14px; color: #023859; margin: 2.5px; font-weight: bold;" th:text="${task.createdOn}"></h3>
+                    <h3 style="margin: 2.5px; font-size: 14px; font-weight: bold;">Updated:</h3><h3 style="font-size: 14px; color: purple; margin: 2.5px; font-weight: bold;" th:text="${task.updatedOn}">Not Updated</h3>
+                    <h3 style="margin: 2.5px; font-size: 14px; font-weight: bold;">Finish before:</h3><h3 style="font-size: 14px; color: #73020C; margin: 2.5px; font-weight: bold;" th:text="${task.doBefore}"></h3>
                 </div>
-                <div style="display: flex; flex-direction: row; margin: 5px;">
+                <div style="display: flex; flex-direction: row; padding-left: 10px; margin-bottom: 5px;">
                     <button style="margin-right: 5px;">
                         <a style="font-weight: bold; color:#27A4F2;" th:href="@{/tasklist/{username}/modifyTask/{taskId}(username=${username},taskId=${task.id})}">Modify this task</a> 
                     </button>
@@ -127,13 +114,13 @@
         <div class="task-div">
             <h1 style="color: #6BBEF2; margin-bottom: 20px;">Completed Tasks:</h1>
             <div class="task-item" th:each="task : ${completedTasks}">
-                <h2 style="margin: 5px; font-size: 24px;" th:text="${task.title}"></h2>
-                <p style="margin: 5px; font-size: 18px;" th:text="${task.description}"></p>
-                <div style="display: flex; flex-direction: row; margin: 5px;">
-                    <h3 style="margin-right: 5px; font-size: 14px; font-weight: bold;">Created:</h3><h3 style="font-size: 14px; font-weight: bold; color: #023859; margin-right: 5px;" th:text="${task.createdOn}"></h3>
-                    <h3 style="margin-right: 5px; font-size: 14px; font-weight: bold;font-size: 14px; font-weight: bold;">Finished:</h3><h3 style="font-size: 14px; font-weight: bold; color: #73020C; margin-right: 5px;" th:text="${task.finishedOn}"></h3>
+                <h2 style="margin: 5px; margin-top: 10px; padding-left: 5px; font-size: 18px; font-weight: bold; color: white; text-transform: uppercase;" th:text="${task.title}"></h2>
+                <p style="margin: 5px; margin-top: 8px; padding-left: 5px; font-size: 15px;" th:text="${task.description}"></p>
+                <div style="display: flex; flex-direction: row; margin: 5px; padding-left: 5px;">
+                    <h3 style="margin: 2.5px; margin-left: 0px; font-size: 14px; font-weight: bold;">Created:</h3><h3 style="font-size: 14px; color: #023859; margin: 2.5px; font-weight: bold;" th:text="${task.createdOn}"></h3>
+                    <h3 style="margin: 2.5px; font-size: 14px; font-weight: bold;">Finished:</h3><h3 style="font-size: 14px; font-weight: bold; color: #73020C; margin: 2.5px; font-weight: bold;" th:text="${task.finishedOn}"></h3>
                 </div>
-                <div style="margin: 5px;">
+                <div style="padding-left: 10px; margin-bottom: 5px;">
                     <button>
                         <a style="font-weight: bold; color: crimson;" th:href="@{/tasklist/{username}/dltCmpltTask/{taskId}(username=${username},taskId=${task.id})}">Delete this task</a>
                     </button>

@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @NoArgsConstructor
@@ -20,9 +21,10 @@ public class OngoingTaskDto {
     private String title;
     @NotBlank(message = "Description can't be empty.")
     private String description;
-    @NotNull(message = "You must select at least one option.")
+    //@NotNull(message = "You must select at least one option.")
     private String status;
     private LocalDate createdOn;
     private LocalDate updatedOn;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate doBefore;
 }

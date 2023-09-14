@@ -47,7 +47,7 @@ public class TaskmanagerDemoApplication implements CommandLineRunner {
             OngoingTask task1 = new OngoingTask();
             task1.setTitle("Task1");
             task1.setDescription("This is task1");
-            task1.setStatus("Ongoing");
+            task1.setStatus("ONGOING");
             task1.setCreatedOn(LocalDate.now());
             task1.setDoBefore(LocalDate.of(2023, Month.SEPTEMBER, 30));
             task1.setUser(userRepository.findByUserName("admin").get());
@@ -56,7 +56,7 @@ public class TaskmanagerDemoApplication implements CommandLineRunner {
             OngoingTask task2 = new OngoingTask();
             task2.setTitle("Task2");
             task2.setDescription("This is task2");
-            task2.setStatus("Ongoing");
+            task2.setStatus("ONGOING");
             task2.setCreatedOn(LocalDate.now());
             task2.setDoBefore(LocalDate.of(2023,Month.SEPTEMBER,30));
             task2.setUser(userRepository.findByUserName("admin").get());
@@ -65,7 +65,7 @@ public class TaskmanagerDemoApplication implements CommandLineRunner {
             CompletedTask task3 = new CompletedTask();
             task3.setTitle("Task3 - Completed");
             task3.setDescription("This is task3 already completed");
-            task3.setStatus("Completed");
+            task3.setStatus("COMPLETED");
             task3.setCreatedOn(LocalDate.of(2023, Month.SEPTEMBER, 30));
             task3.setFinishedOn(LocalDate.now());
             task3.setUser(userRepository.findByUserName("admin").get());

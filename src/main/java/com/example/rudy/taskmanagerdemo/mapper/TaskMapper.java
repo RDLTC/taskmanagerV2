@@ -17,6 +17,7 @@ public class TaskMapper {
                                  .status(ongoingTask.getStatus())
                                  .createdOn(ongoingTask.getCreatedOn())
                                  .doBefore(ongoingTask.getDoBefore())
+                                 .updatedOn(ongoingTask.getUpdatedOn())
                                  .build();
         return ongoingDto;
     }
@@ -29,6 +30,7 @@ public class TaskMapper {
                                  .status(ongoingDto.getStatus())
                                  .createdOn(ongoingDto.getCreatedOn())
                                  .doBefore(ongoingDto.getDoBefore())
+                                 .updatedOn(ongoingDto.getUpdatedOn())
                                  .build();
         return ongoingTask;
     }

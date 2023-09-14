@@ -24,7 +24,7 @@ public class CompletedTaskDto {
     private String title;
     @NotBlank(message = "Description can't be empty.")
     private String description;
-    @NotNull(message = "You must select at least one option.")
+    //@NotNull(message = "You must select at least one option.")
     private String status;
     private LocalDate createdOn;
     private LocalDate finishedOn;

@@ -6,7 +6,7 @@
         <style>
             body {display: flex; flex-direction: column; margin: 0; background-color: #038fe6;}
             .container {padding-left: 2%; justify-content: center; padding-top: 2%; width: 25%;}
-            div {display: flex; flex-direction: column;}
+            div {display: flex; flex-direction: column; margin-top: 10px;}
             h1 {text-transform: uppercase; font-weight: bold; font-size: 30px; font-family: Verdana;}
             label {font-family: 'Times New Roman'; font-size: 22px; font: bolder;}
             input {font-size: 20px;}
@@ -29,14 +29,19 @@
                     <textarea id="description" th:field="*{description}" rows="4" cols="50"></textarea>
                 </div>
                 <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Invalid Description.</div>
-       
-                <div>
+                
+                <div style="display: flex; flex-direction: row; margin-top: 10px;">
+                    <label style="font-size: 20px; margin-right: 5px; font-size: 20px; font-weight: bold;">Finish before: </label>
+                    <input id="finish-before" th:field="*{doBefore}" type="date"/>
+                </div>
+                
+                <div style="margin-top: 10px;">
                     <input type="submit" value="Add Task">
                 </div>
             </form>
 
             <div>
-                <br> <a href="/tasklist"><-- Return To Task List</a>
+                <a href="/tasklist"><-- Return To Task List</a>
             </div>
         </div>
     </body>
