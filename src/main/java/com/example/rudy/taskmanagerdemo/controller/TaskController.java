@@ -70,20 +70,28 @@ public class TaskController {
         if(!ongoingTaskService.verifyTaskAsociatedWithUser(taskId, username)){
             throw new AccessDeniedException("Acceso no autorizado"); 
         }
-        OngoingTaskDto task = ongoingTaskService.findTaskById(taskId);
-        ongoingTaskService.deleteTask(task);
+        ongoingTaskService.deleteTask(taskId);
         return "redirect:/tasklist";
     }
     
     @GetMapping("{username}/dltCmpltTask/{taskId}")
     @PreAuthorize("authentication.principal.username == #username")
     public String deleteCompletedTask(@PathVariable String username, @PathVariable Long taskId){
+        if(!completedTaskService.verifyTaskAsociatedWithUser(taskId, username)){
+            throw new AccessDeniedException("Acceso no autorizado"); 
+        }
+        completedTaskService.deleteTask(taskId);
+        return "redirect:/tasklist";
+    }
+    
+    @GetMapping("/{username}/markAsFinished/{taskId}")
+    @PreAuthorize("authentication.principal.username == #username")
+    public String markOngTaskAsCompleted(@PathVariable String username, @PathVariable Long taskId){
         if(!ongoingTaskService.verifyTaskAsociatedWithUser(taskId, username)){
             throw new AccessDeniedException("Acceso no autorizado"); 
         }
-        CompletedTaskDto task = completedTaskService.findTaskById(taskId);
-        completedTaskService.deleteTask(task);
-        return "redirect:/tasklist";
+        ongoingTaskService.finishedTask(taskId, username);
+        return "redirect:/tasklist/{username}/dltOngTask/{taskId}";
     }
     
     @PostMapping("/addTask")

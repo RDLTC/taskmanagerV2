@@ -17,7 +17,10 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class OngoingTaskService {
     private final OngoingTaskRepository ongoingTaskRepository;
+    
     private final UserService userService;
+    private final CompletedTaskService completedTaskService;
+    
     private final TaskMapper taskMapper;
     private final UserMapper userMapper;
     
@@ -27,7 +30,6 @@ public class OngoingTaskService {
         OngoingTask newTask = taskMapper.mapToOngoing(task);
         newTask.setUser(user);
         newTask.setCreatedOn(LocalDate.now());
-        newTask.setDoBefore(task.getDoBefore());
         newTask.setStatus("ONGOING");
         
         ongoingTaskRepository.save(newTask);
@@ -44,7 +46,7 @@ public class OngoingTaskService {
     }
     
     public void modifyTask(OngoingTaskDto modifiedTask, Long taskId){
-        OngoingTask taskToUpdate = ongoingTaskRepository.findById(taskId).orElseThrow(() -> new NoSuchElementException("Task with id "+modifiedTask.getId()+" not found."));
+        OngoingTask taskToUpdate = ongoingTaskRepository.findById(taskId).orElseThrow(() -> new NoSuchElementException("Task with id "+taskId+" not found."));
         
         taskToUpdate.setTitle(modifiedTask.getTitle());
         taskToUpdate.setDescription(modifiedTask.getDescription());
@@ -55,7 +57,17 @@ public class OngoingTaskService {
         ongoingTaskRepository.save(taskToUpdate);
     }
     
-    public void deleteTask(OngoingTaskDto task){
-        ongoingTaskRepository.deleteById(task.getId());
+    public void deleteTask(Long taskId){
+        OngoingTaskDto taskExists = findTaskById(taskId);
+        ongoingTaskRepository.deleteById(taskExists.getId());
+    }
+    
+    public void finishedTask(Long modifiedTaskId, String username){
+        OngoingTask finishedTask = taskMapper.mapToOngoing(findTaskById(modifiedTaskId));
+        
+        //deleteTask(modifiedTaskId);
+        finishedTask.setUser(userMapper.mapToUser(userService.findByUsername(username)));
+        
+        completedTaskService.addTask(taskMapper.mapOngToCompleted(finishedTask));
     }
 }

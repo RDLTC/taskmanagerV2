@@ -24,7 +24,6 @@ public class TaskMapper {
     
     public OngoingTask mapToOngoing(OngoingTaskDto ongoingDto){
         OngoingTask ongoingTask = OngoingTask.builder()
-                                 .id(ongoingDto.getId())
                                  .title(ongoingDto.getTitle())
                                  .description(ongoingDto.getDescription())
                                  .status(ongoingDto.getStatus())
@@ -49,7 +48,6 @@ public class TaskMapper {
     
     public CompletedTask mapToCompleted(CompletedTaskDto completedDto){
         CompletedTask completedTask = CompletedTask.builder()
-                        .id(completedDto.getId())
                         .title(completedDto.getTitle())
                         .description(completedDto.getDescription())
                         .status(completedDto.getStatus())
@@ -57,5 +55,15 @@ public class TaskMapper {
                         .finishedOn(completedDto.getFinishedOn())
                         .build();
         return completedTask;
+    }
+    
+    public CompletedTask mapOngToCompleted(OngoingTask ongoingTask){
+        CompletedTask completed = CompletedTask.builder()
+                         .title(ongoingTask.getTitle())
+                         .description(ongoingTask.getDescription())
+                         .createdOn(ongoingTask.getCreatedOn())
+                         .user(ongoingTask.getUser())
+                         .build();
+        return completed;
     }
 }

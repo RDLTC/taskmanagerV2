@@ -41,23 +41,8 @@
                     <label style="font-weight: bold;" for="description">Description:</label>
                     <textarea id="description" th:field="*{description}" rows="4" cols="50"></textarea>
                 </div>
-                <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Invalid
-                    Description.</div>
+                <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Invalid Description.</div>
     
-                <div>
-                    <label style="font-weight: bold;">
-                        ONGOING:
-                        <input id="ongoing" th:field="*{status}" type="checkbox" value="ONGOING"
-                            onclick="toggleCheckboxes('ongoing')">
-                    </label>
-                    <label style="font-weight: bold;">
-                        FINISHED:
-                        <input id="finished" th:field="*{status}" type="checkbox" value="FINISHED"
-                            onclick="toggleCheckboxes('finished')">
-                    </label>
-                </div>
-                <div style="color: red" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Choose an option</div>
-
                 <div style="display: flex; flex-direction: row; margin-top: 10px;">
                     <label style="font-size: 20px; margin-right: 5px; font-size: 20px; font-weight: bold;">Finish before: </label>
                     <input id="finish-before" th:field="*{doBefore}" type="date"/>

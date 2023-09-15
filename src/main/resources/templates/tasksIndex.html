@@ -104,8 +104,11 @@
                     <button style="margin-right: 5px;">
                         <a style="font-weight: bold; color:#27A4F2;" th:href="@{/tasklist/{username}/modifyTask/{taskId}(username=${username},taskId=${task.id})}">Modify this task</a> 
                     </button>
-                    <button>
+                    <button style="margin-right: 5px;">
                         <a style="font-weight: bold; color: crimson;" th:href="@{/tasklist/{username}/dltOngTask/{taskId}(username=${username},taskId=${task.id})}">Delete this task</a>
+                    </button>
+                    <button>
+                        <a style="font-weight: bold; color: green;" th:href="@{/tasklist/{username}/markAsFinished/{taskId}(username=${username},taskId=${task.id})}">Mark as completed</a>
                     </button>
                 </div>
             </div>
